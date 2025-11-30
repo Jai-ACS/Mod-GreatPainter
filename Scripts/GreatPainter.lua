@@ -7,27 +7,11 @@ GreatPainter_MainUI = GreatPainter_MainUI or GameMain:GetMod("Windows"):CreateWi
 local Adapter = GameMain:GetMod("Jai_HotkeyAdapter")
 
 local function AddTranslation()
-	if CS.TFMgr.Instance.Language == "cn" then
-		return;
+	if (MultiLanguage ~= nil) then
+		MultiLanguage:Load("MakeMeHappy")
 	end
-	xlua.private_accessible(CS.TFMgr);
-	CS.TFMgr.Instance:AddKv("超级符师", "GreatPainter");
-	CS.TFMgr.Instance:AddKv("倍画符", "Times Power");
-	CS.TFMgr.Instance:AddKv("快速画符+", "Instant Draw Plus");
-	CS.TFMgr.Instance:AddKv("假符模板", "Mirror Pattern");
-	CS.TFMgr.Instance:AddKv("出错啦！\n超级符师修改失败！\n请及时反馈bug", "Error!\nFail to edit!");
-	CS.TFMgr.Instance:AddKv("超级符师修改成功", "Changes applied to ");
-	CS.TFMgr.Instance:AddKv("暂无", "None");
-	CS.TFMgr.Instance:AddKv("幽粹成功率设置为：\n100%", "Specter Refinement Success Rate Change to:\n100%");
-	CS.TFMgr.Instance:AddKv("幽粹成功率设置为：\n游戏默认值", "Specter Refinement Success Rate Change to:\nDefault Value");
-	CS.TFMgr.Instance:AddKv("灵粹成功率设置为：\n100%", "Spiritual Refinement Success Rate Change to:\n100%");
-	CS.TFMgr.Instance:AddKv("灵粹成功率设置为：\n游戏默认值", "Spiritual Refinement Success Rate Change to:\nDefault Value");
-	CS.TFMgr.Instance:AddKv("快速画符品质：", "Instant Draw V:");
-	CS.TFMgr.Instance:AddKv("快速画符设置", "Instant Draw Setting");
-	CS.TFMgr.Instance:AddKv("预测品质:%s", "Predict Quality:%s");
-	CS.TFMgr.Instance:AddKv("未知", "N/A");
-	
 end
+
 function GreatPainter:OnInit()
 	print("GreatPainter init");	
 	--接管需要用的管理类
@@ -435,4 +419,5 @@ function GreatPainter:OnLeave()
 	-- GreatPainter:SaveSetting();
 	-- GreatPainter:Save()
 end
+
 
