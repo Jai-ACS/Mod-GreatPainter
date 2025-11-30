@@ -55,7 +55,7 @@ end
 
 function GreatPainter:OnSave()
     self.SaveData = self.SaveData or {}
-    return SaveData
+    return self.SaveData
 end
 
 function GreatPainter:OnLoad(tbLoad)
@@ -435,4 +435,5 @@ function GreatPainter:OnLeave()
 	-- GreatPainter:SaveSetting();
 	GreatPainter:Save()
 end
+
 
