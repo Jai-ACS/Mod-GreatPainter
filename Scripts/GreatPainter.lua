@@ -53,26 +53,26 @@ function GreatPainter:registerWithAdapter()
 	)
 end
 
--- function GreatPainter:OnSave()
---     self.SaveData = self.SaveData or {}
---     return self.SaveData
--- end
+function GreatPainter:OnSave()
+    self.SaveData = self.SaveData or {}
+    return self.SaveData
+end
 
--- function GreatPainter:OnLoad(tbLoad)
---     self.SaveData = tbLoad or {}
+function GreatPainter:OnLoad(tbLoad)
+    self.SaveData = tbLoad or {}
 		
--- 	if GreatPainter.AutoStart == nil then
--- 		GreatPainter.AutoStart = true
--- 	end
--- 	if GreatPainter.YouCui == nil then
--- 		GreatPainter.YouCui = false
--- 	end
--- 	if GreatPainter.LingCui == nil then
--- 		GreatPainter.LingCui = false
--- 	end
+	if GreatPainter.AutoStart == nil then
+		GreatPainter.AutoStart = true
+	end
+	if GreatPainter.YouCui == nil then
+		GreatPainter.YouCui = false
+	end
+	if GreatPainter.LingCui == nil then
+		GreatPainter.LingCui = false
+	end
 	
--- 	GreatPainter:Save()
--- end
+	GreatPainter:Save()
+end
 
 local function QuickPaintPlus(power)
 	local _GreatPainter = GameMain:GetMod("GreatPainter");
@@ -435,3 +435,4 @@ function GreatPainter:OnLeave()
 	-- GreatPainter:SaveSetting();
 	-- GreatPainter:Save()
 end
+
