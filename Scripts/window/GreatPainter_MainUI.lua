@@ -1,7 +1,7 @@
 local Windows = GameMain:GetMod("Windows");--先注册一个新的MOD模块
 local GreatPainter = GameMain:GetMod("GreatPainter");
 GreatPainter_MainUI = Windows:CreateWindow("GreatPainter_MainUI");
-local GlobleDataMgr = CS.XiaWorld.GlobleDataMgr.Instance;
+-- local GlobleDataMgr = CS.XiaWorld.GlobleDataMgr.Instance;
 function GreatPainter_MainUI:OnInit()
 	self.window.contentPane = UIPackage.CreateObject("GreatPainter", "GreatPainterWindow");--载入UI包里的窗口
 	self.window.closeButton = self:GetChild("frame"):GetChild("n5");
@@ -46,7 +46,8 @@ end
 
 function GreatPainter_MainUI:GetQuickData()
 	local Quick_Data = {};
-	local FuSaves = GlobleDataMgr.FuSaves;
+	-- local FuSaves = GlobleDataMgr.FuSaves;
+	local FuSaves = CS.XiaWorld.World.Instance.FuSaves;
 		for k, v in pairs(FuSaves) do
 			Quick_Data[k] = v;
 		end
