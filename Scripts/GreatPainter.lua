@@ -53,12 +53,12 @@ function GreatPainter:registerWithAdapter()
 	)
 end
 
-function MakeMeHappy:OnSave()
+function GreatPainter:OnSave()
     self.SaveData = self.SaveData or {}
     return SaveData
 end
 
-function MakeMeHappy:OnLoad(tbLoad)
+function GreatPainter:OnLoad(tbLoad)
     self.SaveData = tbLoad or {}
 		
 	if GreatPainter.AutoStart == nil then
@@ -435,3 +435,4 @@ function GreatPainter:OnLeave()
 	-- GreatPainter:SaveSetting();
 	GreatPainter:Save()
 end
+
