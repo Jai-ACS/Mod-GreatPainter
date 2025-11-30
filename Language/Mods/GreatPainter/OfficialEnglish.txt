@@ -1,0 +1,16 @@
+Key	Value
+超级符师	GreatPainter
+倍画符	Times Power
+快速画符+	Instant Draw Plus
+假符模板	Mirror Pattern
+出错啦！\r\n超级符师修改失败！\r\n请及时反馈bug	Error!\r\nFail to edit!
+超级符师修改成功	Changes applied to
+暂无	None
+幽粹成功率设置为：\r\n100%	Specter Refinement Success Rate Change to:\r\n100%
+幽粹成功率设置为：\r\n游戏默认值	Specter Refinement Success Rate Change to:\r\nDefault Value
+灵粹成功率设置为：\r\n100%	Spiritual Refinement Success Rate Change to:\r\n100%
+灵粹成功率设置为：\r\n游戏默认值	Spiritual Refinement Success Rate Change to:\r\nDefault Value
+快速画符品质：	Instant Draw V:
+快速画符设置	Instant Draw Setting
+预测品质:%s	Predict Quality:%s
+未知	N/A
