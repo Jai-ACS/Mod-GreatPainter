@@ -4,6 +4,8 @@ GreatPainter.Power = 12;
 local GlobleDataMgr = CS.XiaWorld.GlobleDataMgr.Instance;
 GreatPainter_MainUI = GreatPainter_MainUI or GameMain:GetMod("Windows"):CreateWindow("GreatPainter_MainUI");
 
+local Adapter = GameMain:GetMod("Jai_HotkeyAdapter")
+
 local function AddTranslation()
 	if CS.TFMgr.Instance.Language == "cn" then
 		return;
@@ -34,6 +36,20 @@ function GreatPainter:OnInit()
 	GreatPainter.WorldLuaHelper = CS.WorldLuaHelper();
 	GreatPainter_MainUI:Init();
 	GreatPainter.LocalLoad = true;
+
+	self:registerWithAdapter()
+end
+
+function GreatPainter:registerWithAdapter()
+	if (Adapter == nil) then
+		return
+	end
+	
+	Adapter:register(XT("超级符师"), XT("打开面板"),
+		function()
+			GreatPainter_MainUI:Show()
+		end
+	)
 end
 
 local function QuickPaintPlus(power)
@@ -396,4 +412,5 @@ end
 
 function GreatPainter:OnLeave()
 	GreatPainter:SaveSetting();
+
 end
