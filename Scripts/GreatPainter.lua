@@ -1,7 +1,8 @@
 ﻿local GreatPainter = GameMain:GetMod("GreatPainter");--先注册一个新的MOD模块
 --GreatPainter.AutoStart = true;
 GreatPainter.Power = 12;
-local GlobleDataMgr = CS.XiaWorld.GlobleDataMgr.Instance;
+-- local GlobleDataMgr = CS.XiaWorld.GlobleDataMgr.Instance;
+local World = CS.XiaWorld.World.Instance;
 GreatPainter_MainUI = GreatPainter_MainUI or GameMain:GetMod("Windows"):CreateWindow("GreatPainter_MainUI");
 
 local Adapter = GameMain:GetMod("Jai_HotkeyAdapter")
@@ -376,11 +377,14 @@ function GreatPainter:SetAll(value)
 		return;
 	end
 	for k, v in pairs(data) do
-		local s , cv = GlobleDataMgr.FuSaves:TryGetValue(k)
+		-- local s , cv = GlobleDataMgr.FuSaves:TryGetValue(k)
+		local s , cv = World.FuSaves:TryGetValue(k)
 		if s and cv > newvalue then
-			GlobleDataMgr.FuSaves:Remove(k)
+			-- GlobleDataMgr.FuSaves:Remove(k)
+			World.FuSaves:Remove(k)
 		end
-		GlobleDataMgr:SaveFuValue(k,newvalue);
+		-- GlobleDataMgr:SaveFuValue(k,newvalue);
+		World:SaveFuValue(k,newvalue);
 	
 		local spelldef = PracticeMgr:GetSpellDef(k)
 		local spellname = spelldef.DisplayName;
@@ -401,11 +405,14 @@ function GreatPainter:SetOne(name,value)
 		GreatPainter.WorldLuaHelper:ShowMsgBox("出错啦！\n超级符师修改失败！\n请及时反馈bug","超级符师");
 		return;
 	end
-	local s , cv = GlobleDataMgr.FuSaves:TryGetValue(name)
+	-- local s , cv = GlobleDataMgr.FuSaves:TryGetValue(name)
+	local s , cv = World.FuSaves:TryGetValue(name)
 	if s and cv > newvalue then
-		GlobleDataMgr.FuSaves:Remove(name)
+		-- GlobleDataMgr.FuSaves:Remove(name)
+		World.FuSaves:Remove(name)
 	end
-	GlobleDataMgr:SaveFuValue(name,newvalue);
+	-- GlobleDataMgr:SaveFuValue(name,newvalue);
+	World:SaveFuValue(name,newvalue);
 	local spelldef = PracticeMgr:GetSpellDef(name)
 	local spellname = spelldef.DisplayName;
 	print(spellname , " 快速画符品质已修改为：" , newvalue);
@@ -419,5 +426,6 @@ function GreatPainter:OnLeave()
 	-- GreatPainter:SaveSetting();
 	-- GreatPainter:Save()
 end
+
 
 
