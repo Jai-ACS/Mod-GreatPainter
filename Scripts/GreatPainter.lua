@@ -249,13 +249,13 @@ function GreatPainter:OnEnter()
 	GreatPainter.Window.onPositionChanged:Add(function() AddButton() end);
 end
 
-function GreatPainter:OnStep(dt)--请谨慎处理step的逻辑，可能会影响游戏效率
-	--print("GreatPainter Step"..dt);
-end
+-- function GreatPainter:OnStep(dt)--请谨慎处理step的逻辑，可能会影响游戏效率
+-- 	--print("GreatPainter Step"..dt);
+-- end
 
-function GreatPainter:OnRender(dt)--渲染帧 刷新
-	--print("GreatPainter Render"..dt);
-end
+-- function GreatPainter:OnRender(dt)--渲染帧 刷新
+-- 	--print("GreatPainter Render"..dt);
+-- end
 
 function GreatPainter:ToStringEx(value)
     if type(value)=='table' then
@@ -348,13 +348,13 @@ end
 -- 	file:close()
 -- end
 
-function GreatPainter:OnSave()--系统会将返回的table存档 table应该是纯粹的KV
-	print("GreatPainter OnSave");
-end
+-- function GreatPainter:OnSave()--系统会将返回的table存档 table应该是纯粹的KV
+-- 	print("GreatPainter OnSave");
+-- end
 
-function GreatPainter:OnLoad(tbLoad)--读档时会将存档的table回调到这里
-	print("GreatPainter OnLoad");
-end
+-- function GreatPainter:OnLoad(tbLoad)--读档时会将存档的table回调到这里
+-- 	print("GreatPainter OnLoad");
+-- end
 
 function GreatPainter:OnLeave()
 	-- GreatPainter:SaveSetting();
@@ -435,5 +435,6 @@ function GreatPainter:OnLeave()
 	-- GreatPainter:SaveSetting();
 	GreatPainter:Save()
 end
+
 
 
