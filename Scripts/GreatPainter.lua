@@ -32,11 +32,12 @@ function GreatPainter:OnInit()
 	print("GreatPainter init");	
 	--接管需要用的管理类
 	AddTranslation();
-	GreatPainter:LoadSetting();
+	-- GreatPainter:LoadSetting();
 	GreatPainter.WorldLuaHelper = CS.WorldLuaHelper();
 	GreatPainter_MainUI:Init();
 	GreatPainter.LocalLoad = true;
 
+	self.SaveData = self.SaveData or {}
 	self:registerWithAdapter()
 end
 
@@ -50,6 +51,27 @@ function GreatPainter:registerWithAdapter()
 			GreatPainter_MainUI:Show()
 		end
 	)
+end
+
+function MakeMeHappy:OnSave()
+    self.SaveData = self.SaveData or {}
+    return SaveData
+end
+
+function MakeMeHappy:OnLoad(tbLoad)
+    self.SaveData = tbLoad or {}
+		
+	if GreatPainter.AutoStart == nil then
+		GreatPainter.AutoStart = true
+	end
+	if GreatPainter.YouCui == nil then
+		GreatPainter.YouCui = false
+	end
+	if GreatPainter.LingCui == nil then
+		GreatPainter.LingCui = false
+	end
+	
+	GreatPainter:Save()
 end
 
 local function QuickPaintPlus(power)
@@ -277,54 +299,54 @@ function GreatPainter:TableToStr(t)
     return retstr
 end
 
-function GreatPainter:LoadSetting()
-	local file = io.open(".\\saves\\GreatPainter.cfg", "r")
-	if file == nil then
-		print("没有配置文件，创建新的配置文件。");
+-- function GreatPainter:LoadSetting()
+-- 	local file = io.open(".\\saves\\GreatPainter.cfg", "r")
+-- 	if file == nil then
+-- 		print("没有配置文件，创建新的配置文件。");
 		
-		if GreatPainter.AutoStart == nil then
-			GreatPainter.AutoStart = true;
-		end
-		if GreatPainter.YouCui == nil then
-			GreatPainter.YouCui = false;
-		end
-		if GreatPainter.LingCui == nil then
-			GreatPainter.LingCui = false;
-		end
-		GreatPainter:SaveSetting();
-		return;
-	end
-	local t = file:read("*all")
-	print("超级符师读取设置："..t)
-	local data = load("return "..t)();
+-- 		if GreatPainter.AutoStart == nil then
+-- 			GreatPainter.AutoStart = true;
+-- 		end
+-- 		if GreatPainter.YouCui == nil then
+-- 			GreatPainter.YouCui = false;
+-- 		end
+-- 		if GreatPainter.LingCui == nil then
+-- 			GreatPainter.LingCui = false;
+-- 		end
+-- 		GreatPainter:SaveSetting();
+-- 		return;
+-- 	end
+-- 	local t = file:read("*all")
+-- 	print("超级符师读取设置："..t)
+-- 	local data = load("return "..t)();
 	
-	GreatPainter.AutoStart = data.AutoStart;
-	GreatPainter.YouCui = data.YouCui;
-	GreatPainter.LingCui = data.LingCui;
-	file:close();
-	return;
-end
+-- 	GreatPainter.AutoStart = data.AutoStart;
+-- 	GreatPainter.YouCui = data.YouCui;
+-- 	GreatPainter.LingCui = data.LingCui;
+-- 	file:close();
+-- 	return;
+-- end
 
-function GreatPainter:SaveSetting()
-	local file = io.open(".\\saves\\GreatPainter.cfg", "w")
-	if GreatPainter.AutoStart == nil then
-		GreatPainter.AutoStart = true;
-	end
-	if GreatPainter.YouCui == nil then
-		GreatPainter.YouCui = false;
-	end
-	if GreatPainter.LingCui == nil then
-		GreatPainter.LingCui = false;
-	end
-	local data = {
-		AutoStart = GreatPainter.AutoStart;
-		YouCui = GreatPainter.YouCui;
-		LingCui = GreatPainter.LingCui
-		};
-	print("超级符师保存设置："..GreatPainter:ToStringEx(data))
-	file:write(GreatPainter:ToStringEx(data));
-	file:close()
-end
+-- function GreatPainter:SaveSetting()
+-- 	local file = io.open(".\\saves\\GreatPainter.cfg", "w")
+-- 	if GreatPainter.AutoStart == nil then
+-- 		GreatPainter.AutoStart = true;
+-- 	end
+-- 	if GreatPainter.YouCui == nil then
+-- 		GreatPainter.YouCui = false;
+-- 	end
+-- 	if GreatPainter.LingCui == nil then
+-- 		GreatPainter.LingCui = false;
+-- 	end
+-- 	local data = {
+-- 		AutoStart = GreatPainter.AutoStart;
+-- 		YouCui = GreatPainter.YouCui;
+-- 		LingCui = GreatPainter.LingCui
+-- 		};
+-- 	print("超级符师保存设置："..GreatPainter:ToStringEx(data))
+-- 	file:write(GreatPainter:ToStringEx(data));
+-- 	file:close()
+-- end
 
 function GreatPainter:OnSave()--系统会将返回的table存档 table应该是纯粹的KV
 	print("GreatPainter OnSave");
@@ -335,8 +357,9 @@ function GreatPainter:OnLoad(tbLoad)--读档时会将存档的table回调到这�
 end
 
 function GreatPainter:OnLeave()
-	GreatPainter:SaveSetting();
-	print("GreatPainter Leave");
+	-- GreatPainter:SaveSetting();
+	-- print("GreatPainter Leave");
+	GreatPainter:Save()
 end
 
 function GreatPainter:OnSetHotKey()  --更新了热键方法
@@ -386,8 +409,6 @@ function GreatPainter:SetAll(value)
 	GreatPainter.WorldLuaHelper:ShowMsgBox(XT("超级符师修改成功")..count..XT("个符文"),"超级符师");
 end
 
-
-
 function GreatPainter:SetOne(name,value)
 	local data = PracticeMgr.m_mapSpellDefs;
 	local realvalue = value/100;
@@ -411,6 +432,6 @@ function GreatPainter:SetOne(name,value)
 end
 
 function GreatPainter:OnLeave()
-	GreatPainter:SaveSetting();
-
+	-- GreatPainter:SaveSetting();
+	GreatPainter:Save()
 end
