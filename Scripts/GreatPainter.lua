@@ -9,7 +9,7 @@ local Adapter = GameMain:GetMod("Jai_HotkeyAdapter")
 
 local function AddTranslation()
 	if (MultiLanguage ~= nil) then
-		MultiLanguage:Load("MakeMeHappy")
+		MultiLanguage:Load("GreatPainter")
 	end
 end
 
@@ -426,6 +426,7 @@ function GreatPainter:OnLeave()
 	-- GreatPainter:SaveSetting();
 	-- GreatPainter:Save()
 end
+
 
 
 
